@@ -1,0 +1,5 @@
+rootProject.name = 'backend'
+
+include 'procmin-emdapplications'
+
+include 'hfdd-backend'

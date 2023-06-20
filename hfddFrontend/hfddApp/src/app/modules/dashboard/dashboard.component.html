@@ -1,0 +1,30 @@
+<mat-drawer-container>
+    <mat-drawer mode="side" opened="true">
+        <mat-list role="list">
+            <h2>{{hfddSess?.sessName}}</h2>
+            <a [routerLink]="['info']"><mat-list-item>Info</mat-list-item></a>
+            <a [routerLink]="['addAbstraction']"><mat-list-item>Add Abstraction</mat-list-item></a>
+            <a [routerLink]="['csGraphEdit']"><mat-list-item>Edit Cornerstones</mat-list-item></a>
+            <a [routerLink]="['csGraph']"><mat-list-item>Cornerstone Graph</mat-list-item></a>
+            <mat-divider></mat-divider>
+            <h3>Iterations</h3>
+            <a *ngFor="let it of iterations"
+                mat-list-item
+                [routerLink]="['iteration', it]"
+                routerLinkActive="list-item-active">
+                {{it}}
+            </a>
+
+            <div class="delete-iteration-box">
+                Remove last Iteration
+                <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon"
+                    (click)="dropLastIteration()">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </mat-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

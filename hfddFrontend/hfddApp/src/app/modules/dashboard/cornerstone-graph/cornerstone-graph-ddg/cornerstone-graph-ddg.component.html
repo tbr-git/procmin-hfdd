@@ -1,0 +1,13 @@
+<h1>Difference Decomposition Graph</h1>
+<form [formGroup]="ddgConfigForm">
+    <div class="prep-config">
+        <h2>Variants</h2>
+        <div class="form-group">
+            <label for="inp-kvar">Nbr Variants shown (> 0)</label>
+            <input id="inp-kvar" type="number" formControlName="kVariants">
+        </div>
+    </div>
+</form>
+
+<div #chartContainer class="ddgDiv" id="svgContainer"></div>
+<canvas #myMeasureCanvas></canvas>

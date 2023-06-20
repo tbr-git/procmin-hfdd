@@ -1,0 +1,84 @@
+<div class="container">
+    <h1>HFDD Comparison Session Creator</h1>
+    <form [formGroup]="sessionForm">
+        <div class="sess-info">
+            <h2>Session Info</h2>
+            <div class="form-group">
+                <label for="session-name">Session Name: </label>
+                <input id="session-name" type="text" formControlName="sessionName">
+            </div>
+            <div class="form-group">
+                <label for="session-description">Session Description: </label>
+                <input id="session-description" type="text" formControlName="sessionDesc">
+            </div>
+        </div>
+
+        <div class="sess-logs">
+            <h2>Logs</h2>
+            <div class="form-group">
+                <div>
+                    <input type="file" class="file-input"
+                    (change)="onLeftFileSelected($event)" #fileLeftUpload>
+
+                    <div class="file-upload">
+                        <button mat-mini-fab color="primary" class="upload-btn"
+                        (click)="fileLeftUpload.click()">
+                            <mat-icon>attach_file</mat-icon>
+                        </button>
+                        {{fileNameLeft || "No file selected yet."}}
+                    </div>
+                </div>
+
+                <div>
+                    <input type="file" class="file-input"
+                    (change)="onRightFileSelected($event)" #fileRightUpload>
+
+                    <div class="file-upload">
+                        <button mat-mini-fab color="primary" class="upload-btn"
+                        (click)="fileRightUpload.click()">
+                            <mat-icon>attach_file</mat-icon>
+                        </button>
+                        {{fileNameRight || "No file selected yet."}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="prep-config">
+            <h2>Log Preprocessing</h2>
+            <div class="form-group">
+                <label for="prep-unroll">Max loop unrolling (<= 0 - none)</label>
+                <input id="prep-unroll" type="number" formControlName="prepLoopUnroll">
+            </div>
+        </div>
+        <div class="sps-config">
+            <h2>Selection-projection Structure (SPS) Configuration</h2>
+            <div class="form-group">
+                <label for="sps-time">Co-occurring Activity Mining Time (in ms)</label>
+                <input id="sps-time" type="number" formControlName="spsMiningTime">
+            </div>
+            <div class="form-group">
+                <label for="sps-size">Target SPS Size </label>
+                <input id="sps-size" type="number" formControlName="spsTargetSize">
+            </div>
+            <div class="form-group">
+                <label for="sps-size-margin">Acceptable Margin Around Target SPS Size (between 0 and 0.99) </label>
+                <input id="sps-size-margin" type="number" formControlName="spsTargetSizeMargin" step="0.025">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="!sessionForm.valid" (click)="onSessionCreateClick()">Submit</button>
+    </form>
+    <div class="progress" *ngIf="showUploadProgress">
+        <h2>Loading Logs</h2>
+        <h4>Log Left</h4>
+        <mat-progress-bar class="progress-bar" mode="determinate"
+            [value]="uploadProgressLeft">
+        </mat-progress-bar>
+        <h4>Log Right</h4>
+        <mat-progress-bar class="progress-bar" mode="determinate"
+            [value]="uploadProgressRight">
+        </mat-progress-bar>
+        <h4> Initializing the Comparison</h4>
+        <mat-progress-bar class="progress-bar" mode="indeterminate"></mat-progress-bar>
+    </div>
+    <button *ngIf="sessionReady">Start Comparison Session</button>
+</div>

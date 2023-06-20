@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="menu-icon" [matMenuTriggerFor]="menu" aria-label="Icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onClickSessions()">
+            <mat-icon>reorder icon</mat-icon>
+            <span>Sessions</span>
+        </button>
+        <button mat-menu-item (click)="onClickNewSession()">
+            <mat-icon>label icon</mat-icon>
+            <span>New</span>
+        </button>
+    </mat-menu>
+<span>Proc Comp</span>
+</mat-toolbar>

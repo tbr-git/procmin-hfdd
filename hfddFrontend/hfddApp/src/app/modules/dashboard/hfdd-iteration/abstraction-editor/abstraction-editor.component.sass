@@ -1,0 +1,80 @@
+:host
+    width: 100%
+    display: block
+
+[hidden]
+    display: none !important
+
+#activity-lists
+    height: 400px
+    display: flex
+    gap: 10px
+    min-width: 800px
+    max-width: 100%
+
+#inter-vertex-activity-lists
+    height: 400px
+    display: flex
+    gap: 10px
+    min-width: 800px
+    max-width: 100%
+    
+.activity-selection-container
+    height: 100%
+    display: flex
+    flex-direction: column
+    flex-grow: 1
+
+
+.activity-set-container
+    height: 400px
+    overflow-y: auto
+    display: inline-block
+    vertical-align: top
+    width: 100%
+
+.activity-set-label
+    height: 40px
+    flex-grow: 0
+    flex-shrink: 0
+
+.abstraction-set 
+    min-width: 250px
+    height: 100%
+    max-width: 100%
+    border: solid 1px #000000
+    min-height: 60px
+    display: block
+    border-radius: 4px
+    flex-grow: 1
+    flex-shrink: 1
+
+.activity-box 
+    padding: 20px 10px
+    border-bottom: solid 1px #000000
+    color: rgb(0, 0, 0)
+    display: flex
+    flex-direction: row
+    align-items: center
+    justify-content: space-between
+    box-sizing: border-box
+    cursor: move
+    background: #c8c1c1d8
+    font-size: 14px
+
+.cdk-drag-preview 
+    box-sizing: border-box
+    border-radius: 4px
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)
+
+.cdk-drag-placeholder 
+    opacity: 0
+
+.cdk-drag-animating 
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1)
+
+.activity-box:last-child 
+    border: none
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) 
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1)

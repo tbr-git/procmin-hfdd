@@ -1,0 +1,35 @@
+<div id="diffInspectionContainer">
+    <div id="divDistribution">
+        <mat-card class="cardTitleContent" id="diffDistCard">
+            <mat-card-title>Subprocess EMD Distribution</mat-card-title>
+            <mat-card-content class="cardContent">
+                <app-metric-overview *ngIf="hfddSess && iteration !== undefined" [hfddSession]="hfddSess" [iteration]="iteration"></app-metric-overview>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div id="divFilter">
+        <mat-card class="cardTitleContent" id="domItemCard">
+            <mat-card-title>Dominating Subprocesses</mat-card-title>
+            <mat-card-content class="cardContent">
+                <app-dominating-vertices *ngIf="hfddSess && iteration !== undefined" 
+                    [hfddSession]="hfddSess" 
+                    [iteration]="iteration"
+                    (itemsetSelectedEvent)="itemsetSelected($event)">
+                </app-dominating-vertices>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div id="diffDetails">
+        <app-diff-ddg *ngIf="selectedVertexId" 
+            [hfddSession]="hfddSess" 
+            [iteration]="iteration"
+            [vertexId]="selectedVertexId">
+        </app-diff-ddg>
+        <!--app-itemset-difference-view *ngIf="selectedVertexId" 
+            [hfddSession]="hfddSess" 
+            [iteration]="iteration"
+            [vertexId]="selectedVertexId">
+        </app-itemset-difference-view-->
+    </div>
+</div>
+

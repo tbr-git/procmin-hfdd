@@ -1,0 +1,6 @@
+FROM amazoncorretto:19-alpine
+
+COPY build/libs/hfdd-backend-0.0.1-SNAPSHOT.jar ./hfddBackend.jar
+
+EXPOSE 8082
+ENTRYPOINT ["java", "-jar", "hfddBackend.jar"]

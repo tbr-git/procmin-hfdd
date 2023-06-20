@@ -1,0 +1,24 @@
+FROM node:lts
+RUN groupmod -g 1002 node && usermod -u 1002 -g 1002 node
+
+RUN mkdir -p /home/node/.npm-global && chown -R node:node /home/node/.npm-global
+RUN mkdir -p /home/node/app && chown -R node:node /home/node/app 
+RUN mkdir /home/node/app/node_modules && chown -R node:node /home/node/app/node_modules
+WORKDIR /home/node/app
+
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PATH=$PATH:/home/node/.npm-global/bin
+RUN npm install -g @angular/cli @angular-devkit/build-angular
+
+USER node
+
+#WORKDIR /usr/src/hfdd/hfdd-ui
+#
+#COPY package*.json ./
+#
+#RUN npm install -g @angular/cli @angular-devkit/build-angular && npm install
+#
+#EXPOSE 4201
+#
+#CMD ["npm", "start"]
+

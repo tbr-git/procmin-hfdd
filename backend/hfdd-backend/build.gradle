@@ -1,0 +1,71 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.12'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'org.processmining'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '20'
+
+repositories {
+	mavenCentral()
+    ivy {
+    	url "https://svn.win.tue.nl/repos"
+    	patternLayout {
+            artifact "[organisation]/Releases/Packages/[module]/[revision]/[artifact]-[revision].[ext]"
+            ivy "[organisation]/Releases/Packages/[module]/[revision]/ivy.xml"
+    	}
+    }
+    ivy {
+    	url "https://svn.win.tue.nl/repos/prom/Libraries"
+    	patternLayout {
+            artifact "[module]/[revision]/[artifact]-[revision].[ext]"
+            artifact "[module]/[revision]/[artifact]_[revision].[ext]"
+            ivy "[module]/[revision]/ivy.xml"
+    	}
+    }
+}
+
+configurations.all {
+   exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation "org.springframework.boot:spring-boot-starter-log4j2"
+	
+    
+	// Parsing XES logs
+	implementation(group: 'prom', name: 'XESLite', version: 'latest', configuration: 'default') {
+		exclude group: 'log4j', module: 'log4j'
+	}
+	
+	// FakeContext
+	implementation(group: 'prom', name: 'StochasticAwareConformanceChecking', version: 'latest', configuration: 'default') {
+		exclude group: 'log4j', module: 'log4j'
+	}
+
+	implementation(group: 'prom', name: 'ProM-Framework', version: 'latest', configuration: 'default') {
+		exclude group: 'log4j', module: 'log4j'
+	}
+	
+	// HFDD Logic
+	implementation project(':procmin-emdapplications')
+}
+
+test {
+  minHeapSize = "128m" // initial heap size
+  maxHeapSize = "4g" // maximum heap size
+  jvmArgs '-Xmx4g' // mem argument for the test JVM
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+task wrapper(type: Wrapper){
+   gradleVersion = '8.1'
+}

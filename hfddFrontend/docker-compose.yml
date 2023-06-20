@@ -1,0 +1,23 @@
+# docker-compose
+version: '3.8'
+services:
+  hfdd-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    command: sh -c "npm start" #command: tail -F anything
+      #command: tail -F anything
+    ports:
+      - "4200:4200"
+    container_name: angular-hfdd-ui
+    volumes:
+      - type: bind
+        source: ./hfddApp
+        target: /home/node/app
+      - type: volume
+        source: hfdd_node_modules
+        target: /home/node/app/node_modules
+#        volume:
+#          nocopy: true
+volumes:
+  hfdd_node_modules:

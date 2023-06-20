@@ -1,0 +1,192 @@
+<h1>Abstraction Editor</h1>
+<p>
+  Below you can configure an abstraction that is then applied to the data to create a new view on the process. 
+</p>
+<p>
+  The abstraction can comprise two parts: an abstraction that is applied to individual edit costs of letters, and an abstraction that affects subprocesses. You may also specify both at the same time.
+</p>
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Intra-vertex Masking
+      </mat-panel-title>
+      <mat-panel-description>
+        Masking operations that affect the costs of edit operations.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>
+      Given that all activities from the <b>condition set occur</b>, all activities from the <b>effect set are affected</b>. 
+      For <b>free deletion</b>, deleting an activity in the left trace will be free. 
+      Likewise for the right trace and <b>free insertion</b>. 
+      For <b>free renaming</b>, rename activities between the two effect sets will be free.
+    </p>
+    <div id="abst-type-select">
+        <mat-button-toggle-group [formControl]="abstractionTypeControl" #abstractionTypeGroup="matButtonToggleGroup">
+            <mat-button-toggle value="none" aria-label="Text align left">
+                None
+            </mat-button-toggle>
+            <mat-button-toggle value="freeDelete" aria-label="Text align left">
+                Free Delete
+            </mat-button-toggle>
+            <mat-button-toggle value="freeInsert" aria-label="Text align center">
+                Free Insert
+            </mat-button-toggle>
+            <mat-button-toggle value="freeRename" aria-label="Text align right">
+                Free Rename
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+    <div id="activity-lists">
+        <div class="activity-selection-container">
+          <h2 class="activity-set-label">Activities</h2>
+          <div class="activity-set-container" cdkScrollable>
+            <div cdkDropList #allActivitiesList="cdkDropList" class="abstraction-set" 
+                [cdkDropListData]="activities"
+                [cdkDropListConnectedTo]="[conditionActivitiesList, effectActivitiesList, effect2ActivitiesList, condition2ActivitiesList]"
+                [cdkDropListEnterPredicate]="noReturnPredicate"
+                (cdkDropListDropped)="drop($event)">
+                <div class="activity-box" [cdkDragData]="activityItem" *ngFor="let activityItem of activities" cdkDrag>
+                    {{activityItem.activityName}}
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-selection-container">
+          <h2 class="activity-set-label">Condition Set</h2>
+          <div class="activity-set-container" cdkScrollable>
+            <div cdkDropList #conditionActivitiesList="cdkDropList" class="abstraction-set" 
+                [cdkDropListData]="conditionActivities"
+                [cdkDropListConnectedTo]="[allActivitiesList]"
+                (cdkDropListDropped)="drop($event)">
+                <div class="activity-box" [cdkDragData]="activityItem" *ngFor="let activityItem of conditionActivities; let i = index" cdkDrag>
+                    {{activityItem.activityName}}
+                    <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon"
+                        (click)="deleteCondition(activityItem)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-selection-container">
+          <h2 class="activity-set-label">Effect Set {{showDoubleCondition ? 'Source' : ''}}</h2>
+          <div class="activity-set-container" cdkScrollable>
+            <div cdkDropList #effectActivitiesList="cdkDropList" class="abstraction-set" 
+                [cdkDropListData]="effectActivities"
+                [cdkDropListConnectedTo]="[allActivitiesList]"
+                (cdkDropListDropped)="drop($event)">
+                <div class="activity-box" [cdkDragData]="activityItem" *ngFor="let activityItem of effectActivities; let i = index" cdkDrag>
+                    {{activityItem.activityName}}
+                    <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon"
+                        (click)="deleteEffect(activityItem)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-selection-container" [hidden]="!showDoubleCondition">
+          <h2 class="activity-list-label">Effect Set Target</h2>
+          <div class="activity-set-container" cdkScrollable>
+            <div cdkDropList #effect2ActivitiesList="cdkDropList" class="abstraction-set" 
+                [cdkDropListData]="effectActivities2"
+                [cdkDropListConnectedTo]="[allActivitiesList]"
+                (cdkDropListDropped)="drop($event)">
+                <div class="activity-box" [cdkDragData]="activityItem" *ngFor="let activityItem of effectActivities2; let i = index" cdkDrag>
+                    {{activityItem.activityName}}
+                    <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon"
+                        (click)="deleteEffect2(activityItem)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div [hidden]="!showDoubleCondition" class="activity-selection-container">
+          <h2 class="activity-list-label">Condition Set Target</h2>
+          <div class="activity-set-container" cdkScrollable>
+            <div cdkDropList #condition2ActivitiesList="cdkDropList" class="abstraction-set" 
+                [cdkDropListData]="conditionActivities2"
+                [cdkDropListConnectedTo]="[allActivitiesList]"
+                (cdkDropListDropped)="drop($event)">
+                <div class="activity-box" [cdkDragData]="activityItem" *ngFor="let activityItem of conditionActivities2; let i = index" cdkDrag>
+                    {{activityItem.activityName}}
+                    <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon"
+                        (click)="deleteCondition2(activityItem)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Subprocess-based Masking and Refinement
+      </mat-panel-title>
+      <mat-panel-description>
+        Difference masking and refinement that affects subprocesses. 
+      </mat-panel-description>
+    </mat-expansion-panel-header>  
+    <p>
+      A subprocess is induced by a set of activities. 
+      Currently, this will therefore <b>fail</b>, if the provided set of activities does not correspond to any subprocess stored in the backend.
+      <b>Free expansion</b> will assign zero costs for deleting or inserting entire traces for all subprocesses that are co-occurrence-dependent on the provided subprocess. 
+      Similarly, <b>positive condition</b> impact  will condition all co-occurrence-dependent subprocesses on the occurrence of the provided subprocess.
+    </p>
+    <div id="inter-vertex-abst-type-select">
+        <mat-button-toggle-group [formControl]="interVertAbstTypeControl" #abstractionTypeGroup="matButtonToggleGroup">
+            <mat-button-toggle value="none" aria-label="Text align left">
+                None
+            </mat-button-toggle>
+            <mat-button-toggle value="CONDFREQIGNORELEFT" aria-label="Text align left">
+                Free Left Expansion
+            </mat-button-toggle>
+            <mat-button-toggle value="CONDFREQIGNORERIGHT" aria-label="Text align left">
+                Free Right Expansion
+            </mat-button-toggle>
+            <mat-button-toggle value="PROBCOND" aria-label="Text align left">
+              Positive Conditional Impact
+            </mat-button-toggle>
+
+        </mat-button-toggle-group>
+        <div id="inter-vertex-activity-lists">
+          <div class="activity-selection-container">
+            <h2 class="activity-set-label">Activities</h2>
+            <div class="activity-set-container" cdkScrollable>
+              <div cdkDropList #interVertexAllActivitiesList="cdkDropList" class="abstraction-set" 
+                  [cdkDropListData]="activities"
+                  [cdkDropListConnectedTo]="[interVertexCondActivities]"
+                  [cdkDropListEnterPredicate]="noReturnPredicate"
+                  (cdkDropListDropped)="drop($event)">
+                  <div class="activity-box" [cdkDragData]="activityItem" *ngFor="let activityItem of activities" cdkDrag>
+                      {{activityItem.activityName}}
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="activity-selection-container">
+            <h2 class="activity-set-label">Condition Activities</h2>
+            <div class="activity-set-container" cdkScrollable>
+              <div cdkDropList #interVertexCondActivities="cdkDropList" class="abstraction-set" 
+                  [cdkDropListData]="vertexConditionActivities"
+                  [cdkDropListConnectedTo]="[interVertexAllActivitiesList]"
+                  (cdkDropListDropped)="drop($event)">
+                  <div class="activity-box" [cdkDragData]="activityItem" *ngFor="let activityItem of vertexConditionActivities; let i = index" cdkDrag>
+                      {{activityItem.activityName}}
+                      <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon"
+                          (click)="deleteVertexCondition(activityItem)">
+                          <mat-icon>delete</mat-icon>
+                      </button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+<button mat-button (click)="applyIteration()">Apply</button>

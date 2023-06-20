@@ -1,0 +1,332 @@
+{
+  "Vertices" : [ {
+    "id" : 1,
+    "visLevel" : 2,
+    "probabilityMassLeft" : 0.5,
+    "probabilityMassRight" : 0.5,
+    "residualProbabilityMassLeft" : 0.5,
+    "residualProbabilityMassRight" : 0.4000000059604645,
+    "activities" : [ {
+      "activity" : "C+complete",
+      "activityCode" : 5,
+      "activityAbbrev" : "C+complete"
+    }, {
+      "activity" : "B+complete",
+      "activityCode" : 1,
+      "activityAbbrev" : "B+complete"
+    }, {
+      "activity" : "D+complete",
+      "activityCode" : 2,
+      "activityAbbrev" : "D+complete"
+    } ],
+    "vertexType" : "INTERSETCS"
+  }, {
+    "id" : 2,
+    "visLevel" : 3,
+    "probabilityMassLeft" : 0.5,
+    "probabilityMassRight" : 0.4000000059604645,
+    "vertexType" : "FLOWSPLIT"
+  }, {
+    "id" : 3,
+    "visLevel" : 4,
+    "probability" : 0.5,
+    "logSide" : "LEFT",
+    "activities" : [ {
+      "activity" : "B+complete",
+      "activityCode" : 1,
+      "activityAbbrev" : "B+complete"
+    }, {
+      "activity" : "C+complete",
+      "activityCode" : 5,
+      "activityAbbrev" : "C+complete"
+    }, {
+      "activity" : "D+complete",
+      "activityCode" : 2,
+      "activityAbbrev" : "D+complete"
+    } ],
+    "intraEMDSideOrdering" : 0,
+    "vertexType" : "EMD"
+  }, {
+    "id" : 4,
+    "visLevel" : 4,
+    "probability" : 0.5,
+    "logSide" : "LEFT",
+    "activities" : [ ],
+    "intraEMDSideOrdering" : 1,
+    "vertexType" : "EMD"
+  }, {
+    "id" : 5,
+    "visLevel" : 5,
+    "probability" : 0.4,
+    "logSide" : "RIGHT",
+    "activities" : [ {
+      "activity" : "C+complete",
+      "activityCode" : 5,
+      "activityAbbrev" : "C+complete"
+    }, {
+      "activity" : "B+complete",
+      "activityCode" : 1,
+      "activityAbbrev" : "B+complete"
+    }, {
+      "activity" : "D+complete",
+      "activityCode" : 2,
+      "activityAbbrev" : "D+complete"
+    } ],
+    "intraEMDSideOrdering" : 0,
+    "vertexType" : "EMD"
+  }, {
+    "id" : 6,
+    "visLevel" : 5,
+    "probability" : 0.6,
+    "logSide" : "RIGHT",
+    "activities" : [ ],
+    "intraEMDSideOrdering" : 1,
+    "vertexType" : "EMD"
+  }, {
+    "id" : 7,
+    "visLevel" : 2,
+    "probabilityMassLeft" : 0.4,
+    "probabilityMassRight" : 0.4,
+    "residualProbabilityMassLeft" : 0.4000000059604645,
+    "residualProbabilityMassRight" : 0.5,
+    "activities" : [ {
+      "activity" : "C+complete",
+      "activityCode" : 5,
+      "activityAbbrev" : "C+complete"
+    }, {
+      "activity" : "E+complete",
+      "activityCode" : 0,
+      "activityAbbrev" : "E+complete"
+    }, {
+      "activity" : "B+complete",
+      "activityCode" : 1,
+      "activityAbbrev" : "B+complete"
+    } ],
+    "vertexType" : "INTERSETCS"
+  }, {
+    "id" : 8,
+    "visLevel" : 3,
+    "probabilityMassLeft" : 0.4000000059604645,
+    "probabilityMassRight" : 0.5,
+    "vertexType" : "FLOWSPLIT"
+  }, {
+    "id" : 9,
+    "visLevel" : 4,
+    "probability" : 0.4,
+    "logSide" : "LEFT",
+    "activities" : [ {
+      "activity" : "C+complete",
+      "activityCode" : 5,
+      "activityAbbrev" : "C+complete"
+    }, {
+      "activity" : "B+complete",
+      "activityCode" : 1,
+      "activityAbbrev" : "B+complete"
+    }, {
+      "activity" : "E+complete",
+      "activityCode" : 0,
+      "activityAbbrev" : "E+complete"
+    } ],
+    "intraEMDSideOrdering" : 0,
+    "vertexType" : "EMD"
+  }, {
+    "id" : 10,
+    "visLevel" : 4,
+    "probability" : 0.6,
+    "logSide" : "LEFT",
+    "activities" : [ ],
+    "intraEMDSideOrdering" : 1,
+    "vertexType" : "EMD"
+  }, {
+    "id" : 11,
+    "visLevel" : 5,
+    "probability" : 0.5,
+    "logSide" : "RIGHT",
+    "activities" : [ {
+      "activity" : "B+complete",
+      "activityCode" : 1,
+      "activityAbbrev" : "B+complete"
+    }, {
+      "activity" : "C+complete",
+      "activityCode" : 5,
+      "activityAbbrev" : "C+complete"
+    }, {
+      "activity" : "E+complete",
+      "activityCode" : 0,
+      "activityAbbrev" : "E+complete"
+    } ],
+    "intraEMDSideOrdering" : 1,
+    "vertexType" : "EMD"
+  }, {
+    "id" : 12,
+    "visLevel" : 5,
+    "probability" : 0.5,
+    "logSide" : "RIGHT",
+    "activities" : [ ],
+    "intraEMDSideOrdering" : 0,
+    "vertexType" : "EMD"
+  }, {
+    "id" : 13,
+    "visLevel" : 1,
+    "probabilityMassLeft" : 0.9,
+    "probabilityMassRight" : 0.9,
+    "residualProbabilityMassLeft" : 0.0,
+    "residualProbabilityMassRight" : 0.0,
+    "activities" : [ {
+      "activity" : "C+complete",
+      "activityCode" : 5,
+      "activityAbbrev" : "C+complete"
+    }, {
+      "activity" : "B+complete",
+      "activityCode" : 1,
+      "activityAbbrev" : "B+complete"
+    } ],
+    "vertexType" : "INTERSET"
+  }, {
+    "id" : 14,
+    "visLevel" : 0,
+    "probabilityMassLeft" : 1.0,
+    "probabilityMassRight" : 1.0,
+    "residualProbabilityMassLeft" : 0.10000000149011612,
+    "residualProbabilityMassRight" : 0.10000000149011612,
+    "activities" : [ {
+      "activity" : "B+complete",
+      "activityCode" : 1,
+      "activityAbbrev" : "B+complete"
+    } ],
+    "vertexType" : "INTERSET"
+  } ],
+  "Edges" : [ {
+    "Source" : 1,
+    "Target" : 2,
+    "EdgeInfo" : {
+      "id" : 1,
+      "probabilityLeft" : 0.5,
+      "probabilityRight" : 0.4000000059604645,
+      "edgeType" : "INTERSET"
+    }
+  }, {
+    "Source" : 2,
+    "Target" : 3,
+    "EdgeInfo" : {
+      "id" : 2,
+      "probability" : 0.5,
+      "edgeType" : "FLOWSPLIT"
+    }
+  }, {
+    "Source" : 2,
+    "Target" : 4,
+    "EdgeInfo" : {
+      "id" : 3,
+      "probability" : 0.5,
+      "edgeType" : "FLOWSPLIT"
+    }
+  }, {
+    "Source" : 3,
+    "Target" : 6,
+    "EdgeInfo" : {
+      "id" : 4,
+      "probability" : 0.09999999403953552,
+      "cost" : 1.0,
+      "edgeType" : "EMDFLOW"
+    }
+  }, {
+    "Source" : 4,
+    "Target" : 6,
+    "EdgeInfo" : {
+      "id" : 5,
+      "probability" : 0.5,
+      "cost" : 0.0,
+      "edgeType" : "EMDFLOW"
+    }
+  }, {
+    "Source" : 3,
+    "Target" : 5,
+    "EdgeInfo" : {
+      "id" : 6,
+      "probability" : 0.4000000059604645,
+      "cost" : 0.6666666666666666,
+      "edgeType" : "EMDFLOW"
+    }
+  }, {
+    "Source" : 7,
+    "Target" : 8,
+    "EdgeInfo" : {
+      "id" : 7,
+      "probabilityLeft" : 0.4000000059604645,
+      "probabilityRight" : 0.5,
+      "edgeType" : "INTERSET"
+    }
+  }, {
+    "Source" : 8,
+    "Target" : 9,
+    "EdgeInfo" : {
+      "id" : 8,
+      "probability" : 0.4,
+      "edgeType" : "FLOWSPLIT"
+    }
+  }, {
+    "Source" : 8,
+    "Target" : 10,
+    "EdgeInfo" : {
+      "id" : 9,
+      "probability" : 0.6,
+      "edgeType" : "FLOWSPLIT"
+    }
+  }, {
+    "Source" : 9,
+    "Target" : 11,
+    "EdgeInfo" : {
+      "id" : 10,
+      "probability" : 0.4000000059604645,
+      "cost" : 0.6666666666666666,
+      "edgeType" : "EMDFLOW"
+    }
+  }, {
+    "Source" : 10,
+    "Target" : 11,
+    "EdgeInfo" : {
+      "id" : 11,
+      "probability" : 0.10000002384185791,
+      "cost" : 1.0,
+      "edgeType" : "EMDFLOW"
+    }
+  }, {
+    "Source" : 10,
+    "Target" : 12,
+    "EdgeInfo" : {
+      "id" : 12,
+      "probability" : 0.5,
+      "cost" : 0.0,
+      "edgeType" : "EMDFLOW"
+    }
+  }, {
+    "Source" : 13,
+    "Target" : 1,
+    "EdgeInfo" : {
+      "id" : 13,
+      "probabilityLeft" : 0.5,
+      "probabilityRight" : 0.5,
+      "edgeType" : "INTERSET"
+    }
+  }, {
+    "Source" : 13,
+    "Target" : 7,
+    "EdgeInfo" : {
+      "id" : 14,
+      "probabilityLeft" : 0.4,
+      "probabilityRight" : 0.4,
+      "edgeType" : "INTERSET"
+    }
+  }, {
+    "Source" : 14,
+    "Target" : 13,
+    "EdgeInfo" : {
+      "id" : 15,
+      "probabilityLeft" : 0.9,
+      "probabilityRight" : 0.9,
+      "edgeType" : "INTERSET"
+    }
+  } ]
+}
+

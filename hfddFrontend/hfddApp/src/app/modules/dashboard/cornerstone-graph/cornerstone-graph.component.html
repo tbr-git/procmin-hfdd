@@ -1,0 +1,11 @@
+<div id="abst-type-select">
+    <mat-button-toggle-group [formControl]="visualizationTypeControl" #abstractionTypeGroup="matButtonToggleGroup">
+        <mat-button-toggle value="probability" aria-label="Probability-based visualization">
+            Probability
+        </mat-button-toggle>
+        <mat-button-toggle value="matching" aria-label="Matching-based visualization">
+            Matching
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+</div>
+<div #chartContainer id="svgContainer"></div>

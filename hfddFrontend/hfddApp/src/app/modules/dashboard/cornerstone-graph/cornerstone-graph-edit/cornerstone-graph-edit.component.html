@@ -1,0 +1,66 @@
+<h1>Cornerstone Graph Specification</h1>
+<div id="container">
+  <div id="current-cs-manipulation">
+    <h2>Configure Current Graph</h2>
+    <h3>Vertices</h3>
+    <p>List of currently contained vertices</p>
+    <mat-list *ngIf="vertexActivityInfo">
+    <mat-list-item *ngFor="let vInfo of vertexActivityInfo">
+      <div class="cs-vertex-box">
+          <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon"
+              (click)="deleteCS(vInfo.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          {{ vInfo.activities }}
+      </div>
+      </mat-list-item>
+    </mat-list>
+    <h3>Conditoning</h3>
+    <p>Apply the condition context the following iteration.</p>
+    <mat-form-field *ngIf="hfddSess" class="example-form-field">
+      <mat-label>Iteration</mat-label>
+      <input matInput type="number" [ngModel]="hfddSess.cornerstoneSpec.conditionIteration" (ngModelChange)="hfddSess.setCornerstoneConditionIteration($event)">
+      <mat-hint align="start">Leave empty for un-conditioned version</mat-hint>
+    </mat-form-field>
+    </div>
+    <div id="container-add-cs">
+      <h2>Extend the Graph</h2>
+      <p>Select a set of activities for which you want to add the corresponding vertex (if it exists).</p>
+      <div id="activity-selection-control">
+        <div class="activity-selection-container">
+          <h2 class="activity-set-label">Activities</h2>
+          <div class="activity-set-container" cdkScrollable>
+            <div cdkDropList #allActivitiesList="cdkDropList" class="abstraction-set" 
+                [cdkDropListData]="activities"
+                [cdkDropListConnectedTo]="[addCSActivitiesList]"
+                [cdkDropListEnterPredicate]="noReturnPredicate"
+                (cdkDropListDropped)="drop($event)">
+                <div class="activity-box" [cdkDragData]="activityItem" *ngFor="let activityItem of activities" cdkDrag>
+                    {{activityItem.activityName}}
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-selection-container">
+          <h2 class="activity-set-label">Cornerstone Set</h2>
+          <div class="activity-set-container" cdkScrollable>
+            <div cdkDropList #addCSActivitiesList="cdkDropList" class="add-activity-set" 
+                [cdkDropListData]="addCSActivities"
+                [cdkDropListConnectedTo]="[allActivitiesList]"
+                (cdkDropListDropped)="drop($event)">
+                <div class="activity-box" [cdkDragData]="activityItem" *ngFor="let activityItem of addCSActivities; let i = index" cdkDrag>
+                    <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon"
+                        (click)="deleteAddCSActivity(activityItem)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    {{activityItem.activityName}}
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <button mat-button (click)="addAddCSActivity()">Add to Graph</button>
+  </div>
+</div>
+
+
